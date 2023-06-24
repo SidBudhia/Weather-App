@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" type="text/css" href="./style.css"></link> -->
+    <title>Weather APP</title>
+</head>
+<body>
+    <div class="box">
+        <div class="wave-one"></div>
+        <div id="weathericon">
+            <i class="fa-solid fa-sun fa-beat fa-2xl" style="color: yellow"></i>
+        </div>
+        <div class="info">
+            <h2 class="location"><i class="fa-sharp fa-solid fa-location-dot"></i> {%location%} ,
+                {%country%} </h2>
+            <p id="date">SAT| 24 Jun 2023| 07:45 PM</p>
+            <h1 class="temp">{%temp%}</h1>
+            <h3 class="minmax">Min: {%tempmin%} | Max: {%tempmax%} </h3>
+
+        </div>
+    </div>
+
+    <script>
+        const dt = document.getElementById("date");
+
+        //To change Image of sun to cloud rainy n all but not doing in it
+        const temStatus= "{%tempstatus%}";
+        // Add if else condition and change weathercon.innerHTML (call full i tag)
+
+        const now = new Date();
+        const getCurrentTime = () => {
+            var day = now.getDay();
+            var date = now.getDate();
+            var month = now.getMonth();
+            var year = now.getFullYear();
+            var hour = now.getHours();
+            var min = now.getMinutes();
+            var sec = now.getSeconds();
+            let perios = "AM";
+            if (hour > 11) { perios = "PM"; }
+            const days = ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"];
+            const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            
+            return (days[day] + ' | ' + date + '/' + months[month] + '/' + year + ' | ' + hour + ':' + min + ':' + sec + ' ' + perios);
+        };
+        dt.innerHTML = getCurrentTime();
+
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #18282ed0;
+        }
+
+        .box {
+            width: 35vw;
+            height: 80vh;
+            background-color: #a2dcf7;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #weathericon {
+            width: 100px;
+            height: 100px;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .location {
+            font-size: 30px;
+            font-weight: 600;
+            margin: 10px;
+        }
+
+        #date {
+            font-size: 20px;
+            font-weight: 400;
+            margin: 5px;
+        }
+
+        .temp {
+            font-size: 50px;
+            font-weight: 600;
+            margin: 10px;
+        }
+
+        .minmax {
+            font-size: 20px;
+            font-weight: 400;
+            margin: 10px;
+        }
+
+        @keyframes wave-one {
+            0% {
+                background-position-x: 0;
+            }
+
+            100% {
+                background-position-x: 100%;
+            }
+        }
+
+        .wave-one {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg") repeat-x;
+            animation: wave-one 10s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+            transform: translate3d(0, 0, 0);
+        }
+    </style>
+
+</body>
+</html>
